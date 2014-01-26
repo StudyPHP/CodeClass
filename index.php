@@ -1,6 +1,6 @@
 <?php 
 include 'include.php';
-include 'template/header.php'; 
+include 'template/header.php.tpl'; 
 if ($_COOKIE['login']==$user['login']){
 ?>
 <p>Приветствуем, <?=$_COOKIE['login'] ?>!</p>
@@ -12,4 +12,4 @@ if ($_COOKIE['login']==$user['login']){
 }
 ?>
 
-<?php include 'template/footer.php'; ?>
+<?php include 'template/footer.php.tpl'; ?>
