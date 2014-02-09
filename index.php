@@ -1,6 +1,6 @@
 <?php 
 include 'include.php';
-include 'template/header.php.tpl'; 
+include 'template/header.php'; 
 if ($_COOKIE['login']==$user['login']){
 ?>
 <p>Приветствуем, <?=$_COOKIE['login'] ?>!</p>
