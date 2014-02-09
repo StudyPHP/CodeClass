@@ -25,10 +25,32 @@ class DB {
       return $array;
     }
     
-    function Insert($field=false,$row,$table,$value)
+    function Insert($table,$row,$value)
     {
+       $str_row = join(", ", $row);
+       $str_value = join(", ", $value);
        
-    }         
+       $sql = "INSERT INTO $table ($str_row) VALUE ($str_value)";
+       $answer = mysql_query($sql);
+       return $answer;
+    } 
+    function Update ($table,$row,$value,$option=FALSE)
+    {
+       if (is_string($row) && is_string($value))
+       {
+           $sql = "UPDATE $table SET $row = $value";
+       }
+       if (is_array($row) && is_array($value))
+       {
+           $sql = "UPDATE $table SET ";
+           for ($i=0; $i < count($row); $i++){
+             $sql.="$row = $value".",";  
+           }
+           $sql = substr($sql, 0, strlen($sql)-1);
+       }
+       $answer = mysql_query($sql);
+       return $answer;
+    }
 }
 
 
