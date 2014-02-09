@@ -10,21 +10,25 @@ class DB {
       $this->conn = mysql_connect($this->host, $this->user, $this->pass);
       mysql_select_db($this->db_name);
     }
-    function Select($row,$table,$option=false)
+    function Select($table,$row="*",$option=false)
     {
       if(!$option){
-         $sql = "SELECT * FROM $table" 
+         $sql = "SELECT $row FROM $table"; 
+      }
+      if($option){
+         $sql = "SELECT $row FROM $table WHERE $option"; 
       }
       $data = mysql_query($sql);
-      while(mysql_fetch_assoc($data)){
-         $array[]= mysql_fetch_assoc($data);
+      while($row = mysql_fetch_assoc($data)){
+         $array[]= $row;
       }
+      return $array;
     }
+    
     function Insert($field=false,$row,$table,$value)
     {
        
-    }     
-        
+    }         
 }
 
 
