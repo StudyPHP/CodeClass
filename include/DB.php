@@ -51,6 +51,27 @@ class DB {
        $answer = mysql_query($sql);
        return $answer;
     }
+    function Delete($table,$option){
+       $sql = "DELETE FROM $table".$option;
+        
+       $answer = mysql_query($sql);
+       return $answer;
+    }
+    
+    function Where ($row, $value, $action)
+    {
+        $option = "";
+        if ($value)
+            $option = "WHERE $row $action $value";
+        return $option;
+    }
+    function Limit ($count)
+    {
+        $option = '';
+        if(is_int($count))
+        $option = "LIMIT 0,$count";
+        return $option;
+    }
 }
 
 
