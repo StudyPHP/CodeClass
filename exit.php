@@ -6,7 +6,7 @@ log_out();
 include 'header.php'; 
 ?>
 
-<p><?=$user['login']?> свидание!</p>
+<p><?=$user['login']?> good! свидание!</p>
 
 <?php include 'footer.php'; ?>
 
