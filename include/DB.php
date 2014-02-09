@@ -5,10 +5,9 @@ class DB {
     private $db_name = "school_db";
     private $pass = "";
     public $conn;
-    
-    function Connect (){
-      $this->conn = mysql_connect($this->host, $this->user, $this->pass);
-      mysql_select_db($this->db_name);
+    public function __construct() {
+       $this->conn = mysql_connect($this->host, $this->user, $this->pass);
+       mysql_select_db($this->db_name);
     }
     function Select($table,$row="*",$option=false)
     {
