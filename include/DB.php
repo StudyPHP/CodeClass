@@ -71,7 +71,6 @@ class DB {
         $option = "LIMIT 0,$count";
         return $option;
     }
->>>>>>> C-02
 }
 
 
