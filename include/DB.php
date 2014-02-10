@@ -9,13 +9,13 @@ class DB {
        $this->conn = mysql_connect($this->host, $this->user, $this->pass);
        mysql_select_db($this->db_name);
     }
-    function Select($table,$row="*",$option=false)
+    function Select($row="*",$table,$option=false)
     {
       if(!$option){
          $sql = "SELECT $row FROM $table"; 
       }
       if($option){
-         $sql = "SELECT $row FROM $table WHERE $option"; 
+         $sql = "SELECT $row FROM $table $option"; 
       }
       $data = mysql_query($sql);
       while($row = mysql_fetch_assoc($data)){
@@ -71,11 +71,7 @@ class DB {
         $option = "LIMIT 0,$count";
         return $option;
     }
->>>>>>> C-02
 }
-
-
-
 
 //$connect = mysql_connect('localhost', 'root', '');
 //mysql_select_db('school_db');
