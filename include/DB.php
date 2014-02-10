@@ -15,7 +15,7 @@ class DB {
          $sql = "SELECT $row FROM $table"; 
       }
       if($option){
-         $sql = "SELECT $row FROM $table WHERE $option"; 
+         $sql = "SELECT $row FROM $table $option"; //убрал WHERE - лишня
       }
       $data = mysql_query($sql);
       while($row = mysql_fetch_assoc($data)){
