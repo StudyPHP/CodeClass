@@ -43,7 +43,7 @@ if ($_GET['registration'] == 1}
         </pre>
     </form>
     Вы уже зарегистрированы? Авторизируйтесь!
-    <a href="personal.php?registration=0">Авторизация</a>
+    <a href="personal.php">Авторизация</a>
 </div>
 <?php
 }
