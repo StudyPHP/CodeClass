@@ -1,4 +1,18 @@
 <?php
+/*
+if ($_POST['enter'])
+{
+    if ($_POST['password']==$_POST['password_check'])
+    {
+        //hash_to_cookie ();
+        //$sql = 'INSERT INTO `user`(`login`, `pass`, `name`, `surname`, `country`, `phone`, `email`, `adress`, `hash`) VALUES("'.$_POST['login'].'", "'.md5($_POST['password']).'", "'.$_POST['name'].'", "'.$_POST['surname'].'", "'.$_POST['country'].'", "'.$_POST['phone'].'", "'.$_POST['mail'].'", "'.$_POST['adress'].'", "'.$_SESSION['hash'].'")';
+        header ('Location: index.php'); 
+    }
+}
+*/
+?>
+
+<?php    
 if (!$_GET['registration'])
 {
 ?>
@@ -29,7 +43,7 @@ if ($_GET['registration'] == 1}
         </pre>
     </form>
     Вы уже зарегистрированы? Авторизируйтесь!
-    <a href="login.php">Авторизация</a>>
+    <a href="personal.php?registration=0">Авторизация</a>
 </div>
 <?php
 }
