@@ -1,4 +1,5 @@
 <?php
+include '../include/DB.php';
 class Personal extends DB
 {
     private $data;

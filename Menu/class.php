@@ -1,4 +1,5 @@
 <?php
+include '../include/DB.php';
 class Menu extends DB {
     public $data;
     

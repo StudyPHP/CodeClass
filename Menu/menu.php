@@ -1,4 +1,4 @@
 <?php
- include 'class.php';
- $menu = new Menu();
- include 'menu.tpl';
+include 'class.php';
+$menu = new Menu();
+include 'menu.tpl';
