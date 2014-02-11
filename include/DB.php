@@ -9,7 +9,7 @@ class DB {
        $this->conn = mysql_connect($this->host, $this->user, $this->pass);
        mysql_select_db($this->db_name);
     }
-    function Select($row="*",$table,$option=false)
+    function Select($table,$row="*",$option=false) //был не прав - возвращаю обратно
     {
       if(!$option){
          $sql = "SELECT $row FROM $table"; 
