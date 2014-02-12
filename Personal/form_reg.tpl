@@ -1,9 +1,11 @@
+<?php
+$personal->UserRegistere();
+?>
 <form method="POST" action="">
     Форма для регистрации:
     <pre>
 <?php
-//show_form ($form);
-echo "...здесь когдато шото будет!...";
+$personal->ShowForm();
 ?>
     </pre>
 </form>

@@ -61,7 +61,7 @@ class DB {
     {
         $option = "";
         if ($value)
-            $option = "WHERE $row $action $value";
+            $option = "WHERE $row $action '$value'";
         return $option;
     }
     function Limit ($count)
