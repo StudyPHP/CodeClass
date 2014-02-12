@@ -1,4 +1,4 @@
 <?php
 include 'class.php';
-$menu = new Personal();
+$personal = new Personal();
 include 'personal.tpl';
