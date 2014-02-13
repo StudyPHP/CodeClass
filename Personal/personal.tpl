@@ -10,7 +10,7 @@ if ($_POST['enter'])
         }
         else
         {
-            echo "Неверно введены логин или пароль!";
+            echo "Warning: invalid login or password!<br>";
         }
         if ($_POST['password']==$_POST['password_check'])
         {

@@ -6,24 +6,27 @@ class Personal extends DB
         parent::__construct();
     }
     
-    function UserLogin()
+    function UserLogin()    // OK: function work correct.
     {
         $option = parent::Where("login",$_POST['login'],"=");
-	$array = parent::Select('user','pass',$this->option);
-        if($array)
+        if ($_POST['enter'])
         {
-            if (md5($_POST['passoword'])==$array['pass']) 
+            if ($_POST['password'] && $_POST['login'])
             {
-                header('Location: ../index.php');
-            } 
+                $array = parent::Select('user','pass',$option);
+                if (md5($_POST['password'])==$array[0]['pass']) 
+                {
+                    header('Location: ../index.php');
+                } 
+                else 
+                {
+                    echo 'Warning: the data is entered incorrectly!';
+                }               
+            }
             else 
             {
-                echo 'Внимание: данные введены неверно! 2';
-            }            
-        }
-        else 
-        { 
-            echo 'Внимание: данные введены неверно! 1';
+               echo 'Warning: the data is entered incorrectly!';
+            }
         }
     }
     
@@ -32,7 +35,7 @@ class Personal extends DB
         //
     }
     
-    function ShowForm () 
+    function ShowForm ()    // OK: function work correct.
     /*
     Need to create a table "registration_form" in MySQL for the generate of the registration form
     Field:
@@ -44,20 +47,20 @@ class Personal extends DB
 	    coment
      */
     {
-        $array = parent::Select('registration_form'); //проблемы с массивом - переписать!
-    	for ($i=0;$i<count($array['name'])-1;$i++)
+        $array = parent::Select('registration_form');
+    	for ($i=0;$i<count($array);$i++)
 	{
-        	echo '<input type="'.$array['type'][$i].'" name="'.$array['name'][$i].'" placeholder="'.$array['placeholder'][$i].'" '.$array['required'][$i].' pattern="'.$array['pattern'][$i].'">  '.$array['coment'][$i];
-		if ($array['required'][$i] == 'required')
-		{
-        		echo ' *';
-		}
-        	echo '<br/>';
+            echo '<input type="'.$array[$i]['type'].'" name="'.$array[$i]['name'].'" placeholder="'.$array[$i]['placeholder'].'" '.$array[$i]['required'];
+            if ($array[$i]['pattern'])
+            {
+                echo ' pattern="'.$array[$i]['pattern'].'"';   
+            }
+            echo '>  '.$array[$i]['coment'];
+            if ($array[$i]['required'] == 'required')
+            {
+        	echo ' *';
+            }
+            echo '<br/>';
     	}
-    	if (in_array ('required',$array['required']))
-    	{
-        	echo '<p>* - поля, обязательные для заполнения </p>';
-    	}
-    	echo '<p><input type="submit" name="'.end ($array['name']).'" value="'.end ($array['coment']).'">   <input type="reset" value="Очистить"></p>'; 
     }
 }

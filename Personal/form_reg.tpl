@@ -1,13 +1,13 @@
 <?php
-$personal->UserRegistere();
+$personal->UserRegistere(); //в работе
 ?>
 <form method="POST" action="">
-    Форма для регистрации:
-    <pre>
+    Registration Form:<br>
 <?php
 $personal->ShowForm();
 ?>
-    </pre>
+    * - fields are required<br> 
+    <input type="submit" name="enter" value="Registration">   <input type="reset" value="Clean"> 
 </form>
-Вы уже зарегистрированы? Авторизируйтесь!
-<a href="personal.php">Авторизация</a>
+Already a member?
+<a href="personal.php">Please LogIn!</a>
