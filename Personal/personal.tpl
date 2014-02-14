@@ -1,4 +1,5 @@
 <?php
+// Start: move in class.php
 if ($_POST['enter'])
 {
     if ($_POST['password'] && $_POST['login'])
@@ -22,6 +23,7 @@ if ($_POST['enter'])
         }
     }    
 }
+// End: move in class.php
    
 if (!$_GET['registration'])
 {
