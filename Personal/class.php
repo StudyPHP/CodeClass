@@ -1,5 +1,5 @@
 <?php
-include '../include/DB.php';
+include '../include/DB.php';    //Note: remove after connecting to index.php.
 class Personal extends DB
 {
     public function __construct() {
