@@ -1,14 +1,17 @@
 <?php
 class DB {
+    
     private $host = "localhost";
     private $user = "root";
     private $db_name = "school_db";
     private $pass = "";
     public $conn;
+    
     public function __construct() {
        $this->conn = mysql_connect($this->host, $this->user, $this->pass);
        mysql_select_db($this->db_name);
     }
+    
     function Select($table,$row="*",$option=false)
     {
       if(!$option){
@@ -33,6 +36,7 @@ class DB {
        $answer = mysql_query($sql);
        return $answer;
     } 
+    
     function Update ($table,$row,$value,$option=FALSE)
     {
        if (is_string($row) && is_string($value))
@@ -50,6 +54,7 @@ class DB {
        $answer = mysql_query($sql);
        return $answer;
     }
+    
     function Delete($table,$option){
        $sql = "DELETE FROM $table".$option;
         
@@ -64,6 +69,7 @@ class DB {
             $option = "WHERE $row $action '$value'";
         return $option;
     }
+    
     function Limit ($count)
     {
         $option = '';

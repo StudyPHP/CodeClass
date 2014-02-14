@@ -7,7 +7,8 @@ $personal->UserRegistere(); //в работе
 $personal->ShowForm();
 ?>
     * - fields are required<br> 
-    <input type="submit" name="enter" value="Registration">   <input type="reset" value="Clean"> 
+    <input type="submit" name="enter" value="Registration">
+    <input type="reset" value="Clean"> 
 </form>
 Already a member?
 <a href="personal.php">Please LogIn!</a>
