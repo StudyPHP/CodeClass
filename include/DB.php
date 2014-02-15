@@ -1,6 +1,5 @@
 <?php
 class DB {
-    
     private $host = "localhost";
     private $user = "root";
     private $db_name = "school_db";
@@ -18,7 +17,7 @@ class DB {
          $sql = "SELECT $row FROM $table"; 
       }
       if($option){
-         $sql = "SELECT $row FROM $table $option"; 
+         $sql = "SELECT $row FROM $table $option"; //убрал WHERE - лишня
       }
       $data = mysql_query($sql);
       while($row = mysql_fetch_assoc($data)){
@@ -27,14 +26,19 @@ class DB {
       return $array;
     }
     
-    function Insert($table,$row,$value)
+    function Insert($table,$row,$value) //Функция не "отрабатывает". Проверить синтаксис!  
     {
-       $str_row = join(", ", $row);
-       $str_value = join(", ", $value);
-       
-       $sql = "INSERT INTO $table ($str_row) VALUE ($str_value)";
-       $answer = mysql_query($sql);
-       return $answer;
+        $str_row = join(", ", $row);
+        $str_value = join(", ", $value);
+        $sql = "INSERT INTO $table ($str_row) VALUE ($str_value)";
+        /*
+        echo $sql.'<br>
+        INSERT INTO `user`(`id`, `login`, `pass`, `name`, `surname`, `country`, `phone`, `email`, `adress`, `status`, `hash`) 
+        VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11])
+        ';
+        */
+        $answer = mysql_query($sql);
+        return $answer;
     } 
     
     function Update ($table,$row,$value,$option=FALSE)
@@ -66,7 +70,7 @@ class DB {
     {
         $option = "";
         if ($value)
-            $option = "WHERE $row $action '$value'";
+            $option = "WHERE $row $action $value";
         return $option;
     }
     
@@ -79,9 +83,11 @@ class DB {
     }
 }
 
+
+
+
 //$connect = mysql_connect('localhost', 'root', '');
 //mysql_select_db('school_db');
 //
 //if (!$connect)
 //    echo 'Подключение к базе отсутствует';
-?>
