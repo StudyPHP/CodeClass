@@ -61,14 +61,14 @@ class DB {
     {
         $option = "";
         if ($value)
-            $option = "WHERE $row $action $value";
+            $option = " WHERE $row $action $value"; //добавлен пробел перед WHERE
         return $option;
     }
     function Limit ($count)
     {
         $option = '';
         if(is_int($count))
-        $option = "LIMIT 0,$count";
+        $option = " LIMIT 0, $count"; //добавлен пробел перед LIMIT
         return $option;
     }
 }

@@ -11,5 +11,3 @@ class Menu extends DB {
         $this->data = parent::Select('menu');
     }
 }
-
-
