@@ -34,7 +34,7 @@ class Personal extends DB
     
     function ShowForm ()    // OK: function work correct.
     /*
-    Need to create a table "registration_form" in MySQL for the generate of the registration form
+    Need to create a table "registration_form" in MySQL for the generate of the registration form (dump addet ../)
     Field:
 	    name
 	    type
