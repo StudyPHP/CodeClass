@@ -97,7 +97,7 @@ class Personal extends DB
                         $found = TRUE; 
                     }
                 }
-                if ($found = TRUE)
+                if ($found == TRUE)
                 {
                     $rem_last_var = array_pop($_POST);     
                     $rem_second_last_var = array_pop($_POST); 
