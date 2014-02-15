@@ -5,10 +5,12 @@ class DB {
     private $db_name = "school_db";
     private $pass = "";
     public $conn;
+    
     public function __construct() {
        $this->conn = mysql_connect($this->host, $this->user, $this->pass);
        mysql_select_db($this->db_name);
     }
+    
     function Select($table,$row="*",$option=false)
     {
       if(!$option){
@@ -24,15 +26,21 @@ class DB {
       return $array;
     }
     
-    function Insert($table,$row,$value)
+    function Insert($table,$row,$value) //Функция не "отрабатывает". Проверить синтаксис!  
     {
-       $str_row = join(", ", $row);
-       $str_value = join(", ", $value);
-       
-       $sql = "INSERT INTO $table ($str_row) VALUE ($str_value)";
-       $answer = mysql_query($sql);
-       return $answer;
+        $str_row = join(", ", $row);
+        $str_value = join(", ", $value);
+        $sql = "INSERT INTO $table ($str_row) VALUE ($str_value)";
+        /*
+        echo $sql.'<br>
+        INSERT INTO `user`(`id`, `login`, `pass`, `name`, `surname`, `country`, `phone`, `email`, `adress`, `status`, `hash`) 
+        VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11])
+        ';
+        */
+        $answer = mysql_query($sql);
+        return $answer;
     } 
+    
     function Update ($table,$row,$value,$option=FALSE)
     {
        if (is_string($row) && is_string($value))
@@ -50,6 +58,7 @@ class DB {
        $answer = mysql_query($sql);
        return $answer;
     }
+    
     function Delete($table,$option){
        $sql = "DELETE FROM $table".$option;
         
@@ -64,6 +73,7 @@ class DB {
             $option = "WHERE $row $action $value";
         return $option;
     }
+    
     function Limit ($count)
     {
         $option = '';
@@ -81,4 +91,3 @@ class DB {
 //
 //if (!$connect)
 //    echo 'Подключение к базе отсутствует';
-?>
