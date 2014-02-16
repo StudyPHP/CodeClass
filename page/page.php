@@ -1,4 +1,2 @@
 <?php
-   $page = new Page('front');
-   $page->show(); 
-
+  include 'page.tpl';

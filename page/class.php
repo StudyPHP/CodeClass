@@ -1,22 +1,17 @@
 <?php
 class Page extends Menu {
     public $type;
-    public $array;
+    public $data;
     
-    public function __construct($type) {
+    public function __construct($type,$data) {
         parent::__construct();
         $this->type = $type;
+        $this->data = $data;
     }
     function show() {
         include 'template/header.tpl';
-        switch ($this->type) {
-            case 'front':
-               echo 'Front Page';
-               break;
-            default:
-               echo '404 Page Not found';
-               break;
-        }
+        $file = $this->type."/".$this->type.'.php';
+        include $file;
         include 'template/footer.tpl';
     }
 }

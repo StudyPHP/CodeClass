@@ -1,2 +1,3 @@
 <?php include 'include.php';  
-include 'page/page.php';
+$page = new Page ('page','Front Page');
+$page->show();
