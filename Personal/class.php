@@ -14,7 +14,7 @@ class Personal extends DB
             {
                 $option = parent::Where("login","'".$_POST['login']."'","=");
                 $array = parent::Select('user','pass',$option);
-                if (md5($_POST['password'])==$array[0]['pass']) 
+                if (md5($_POST['pass'])==$array[0]['pass']) 
                 {
                     //session_start();
                     header('Location: ../index.php');
