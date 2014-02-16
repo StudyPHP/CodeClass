@@ -10,7 +10,7 @@ class Personal extends DB
     {
         if ($_POST['enter'])
         {
-            if ($_POST['password'] && $_POST['login'])
+            if ($_POST['pass'] && $_POST['login'])
             {
                 $option = parent::Where("login","'".$_POST['login']."'","=");
                 $array = parent::Select('user','pass',$option);
