@@ -1,33 +1,41 @@
 <?php
 class Personal extends DB {
-    public $data;
+    //public $data;
     
     public function __construct() {
-        parent::__construct();      
+        parent::__construct();
     }
     
     function Log_in($login, $pass) {
-        $option = parent::Where('login', $login, '=');
-        $option .= parent::Limit(1);
-        $this->data = parent::Select('user', 'id, pass', $option);
-        
-        if (count($this->data)) {
-            if (md5($pass) == $this->data['pass']) {
-                $hash = $this->Get_hash(10);
-                $option = parent::Where('id', $this->data['id'], '=');
+        do {
+            if (!(isset($login) && isset($password))) break;
+            
+            $option = parent::Where('login', $login, '=');
+            $option .= parent::Limit(1);
+            $array = parent::Select('user', 'id, pass', $option);
+            
+            if (!count($array)) {
+                echo 'Wrong pass or login. Try again!';
+                break;
+            }
+            
+            if (md5($pass) != $array[0]['pass']) {
+                echo 'Wrong pass or login. Try again!';
+                break;
+            }
+            
+            $hash = $this->Get_hash(10);
+            $option = parent::Where('id', $array[0]['id'], '=');
 
-                if (parent::Update('user', 'hash', $hash, $option)) {
-                    setcookie('hash', $hash);
-                    $_SESSION['auth_id'] = $this->data['id'];           
+            if (parent::Update('user', 'hash', $hash, $option)) {
+                setcookie('hash', $hash);
+                $_SESSION['auth_id'] = $array[0]['id'];
 
-                    header('Location: index.php');                    
-                }
-             } else {
-                 echo 'Wrong pass or login. Try again!';
-             }
-        } else {
-            echo 'Wrong pass or login. Try again!';
-        }
+                //header('Location: index.php');
+            }
+            
+            break;
+        } while (false);
     }
     
     function Log_out() {
@@ -37,7 +45,7 @@ class Personal extends DB {
             setcookie('hash');
             session_unset();
 
-            header('Location: index.php');
+            //header('Location: index.php');
         }
     }
     
@@ -90,10 +98,10 @@ class Personal extends DB {
         
         $option = parent::Where('hash', $_COOKIE['hash'], '=');
         $option .= parent::Limit(1);
-        $this->data = parent::Select('user', 'login', $option);
+        $array = parent::Select('user', 'login', $option);
 
-        if (count($this->data)) {
-           $answer = $this->data['login'];
+        if (count($array)) {
+           $answer = $array[0]['login'];
         }
 
         return $answer;
