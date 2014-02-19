@@ -1,11 +1,10 @@
 <?php
-include '../include/DB.php';
 class Menu extends DB {
     public $data;
     
     public function __construct() {
         parent::__construct();
-        $this->Show();
+        //$this->Show();
     }
     function Show()
     {

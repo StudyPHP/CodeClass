@@ -74,11 +74,11 @@ class DB {
         return $option;
     }
     
-    function Limit ($count)
+    function Limit ($position,$count)
     {
         $option = '';
         if(is_int($count))
-        $option = "LIMIT 0,$count";
+        $option = "LIMIT $position,$count"; // Добавил переменную начальной позиции выборки
         return $option;
     }
 }
