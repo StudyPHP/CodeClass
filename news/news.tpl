@@ -1,28 +1,22 @@
-<!--
-<p>
-</p>
-<hr>
+<form method="POST" action="">
+    Show: 
+    <select name="count">
+        <option  value="3" selected>3</option>
+        <option  value="5">5</option>
+        <option  value="10">10</option>
+    </select>
+    <input type="submit" name="enter" value="preview">
+</form>
 
-    <div>
-        <a href="<?=$data['url']?>">
-            <img src="images/<?=$data['media']?>">
-        </a>
-    </div>
-
-    <h4>
-        <a href=""><?=$data['title']?></a>
-    </h4>
-    <p><?=$data['day'].$data['time']?></p>
-    <p><?=$data['category']?></p>
-    <p> 
--->
 <?php
-$news ->ShowNews();
+$news ->ShowNews($_POST);
 if (!$_SERVER['HTTP_REFERER'])
 {
 ?>
+
     </p>
     <a href="
+       
 <?php 
 echo $_SERVER['PHP_SELF'];
 }
@@ -34,8 +28,13 @@ else
         </p>
         <a href="
 
-<?php 
-echo $_SERVER['PHP_SELF'].'?id=';
+<?php
+$int = 2;
+if ($_GET['page'])
+{
+    $int = $_GET['page']+1;
+}
+    echo $_SERVER['PHP_SELF'].'?page='.$int;
 }
 ?>
 

@@ -18,22 +18,30 @@ Field:
 
 class News extends DB 
 {
-    public $count;
+    protected $count = 3;
+    protected $i = 0;
     public function __construct() 
 	{
         parent::__construct();
     }
 
     /* Function work correct */
-    function InsertData ($count)
+    function InsertDB ($count, $row, $value, $action)
     {
-        $int = 0;
-        if ($_GET['id'])
+        if ($count)
         {
-           $int = $_GET['id']+$count; 
+            $int = 0;
+            if ($_GET['id'])
+            {
+               $int = $_GET['id']+$count; 
+            }
+            $option = parent::Limit($int,$count);
         }
-        $option = parent::Limit($int,$count);
-        $data = parent::Select('news','*',$option);
+        if ($row && $value && $action)
+        {
+            $option = parent::Where($row, $value, $action);
+        }
+        $data = parent::Select('news', '*', $option);
         return $data;
     }
     
@@ -57,62 +65,86 @@ class News extends DB
                 );
         return $times;
     }
-            
-    function ShowNews($count = 3) // Добавить функцию выбора количества показываемых preview
+    
+    function NewsGenerated ($i, $data, $times) //генерация блока preview
     {
-        $data = $this->InsertData ($count);
-        
-        /*
-        echo "<PRE>";
-        print_r($data);
-        echo "</PRE>";
-        */
-        
-        // Generate day news
-        if ($data['id'] == 0)
-        {
-            echo $data['day'];
-        }
-        // Generate preview
+        $i = $i-1;
         echo '<hr><div id="p_view">';
-        for ($i=key ($data);$i<count($data);$i++)
+        echo $times['time'].'<br> Category: '.$data[$i]['category'];      
+        $url = "news.php?id={$data[$i]['id']}";
+        echo '<div class="p_img"> 
+                <a href="'.$url.'">';
+        switch ($data[$i]['media'])
         {
-            $url = "new.php?id={$data[$i]['id']}";
-            echo '<div class="p_img"> 
-                    <a href="'.$url.'">
-                        <img src="images/';
-            if ($data[$i]['media'] != 'image')
-            {
-                echo '000_news_def.jpg"></a></div>';
-            }
-            else 
-            {
-                echo '00'.$data[$i]['id'].'_news.jpg"></a></div>';
-            }
-            $times = $this->TimeConverting($data[$i]['time'], $i);
-            echo 'Time of publication: '.$times['day'].', '.$times['time'].'<br>';
-            echo 'Category: '.$data[$i]['category'];            
-            echo '<h4>
-                    <a href="'.$url.'">'.$data[$i]['title'].'</a>
-                 </h4>';
-            // Generated text preview
-            $preview = 'Sorry, no preview available...';
-            if ($data[$i]['content'])
-            {
-                $preview = $data[$i]['content'];
-                $preview = wordwrap($preview, 200, '|'); //делим строку символом "|" в позиции 200± по концу слова
-                $position = strpos($preview, '|'); //возвращаем длину строки до "|"
-                $preview = substr($preview, 0, $position); //обрезаем строку до "|"
-                $preview .= '<a href="new.php?page='.$data[$i]['id'].'">... done.</a>';
-                echo "<p>".$preview;
+            case 'image': echo '<img src="images/00'.$data[$i]['id'].'_news.jpg">';
                 break;
-            }
+            case 'video': echo '<img src="video/">';
+                break;
+            case 'flash': echo '<img src="flash/">';
+                break;
+            default : echo '<img src="images/000_news_def.jpg">';
+        }
+        echo '</a></div>';
+        echo '<h4>
+                <a href="'.$url.'">'.$data[$i]['title'].'</a>
+              </h4>';
+        // Generated text preview
+        $preview = 'Sorry, no preview available...';
+        if ($data[$i]['content'])
+        {
+            $preview = $data[$i]['content'];
+            $preview = wordwrap($preview, 200, '|'); //делим строку символом "|" в позиции 200± по концу слова
+            $position = strpos($preview, '|'); //возвращаем длину строки до "|"
+            $preview = substr($preview, 0, $position); //обрезаем строку до "|"
+            $preview .= '<a href="new.php?page='.$data[$i]['id'].'">... done.</a>';
+            echo "<p>".$preview;
         }
         echo '</div>';
+        return $data;
+    }
+    
+    function ShowNews($_POST) //генерация $count блоков preview 
+    {
+        // выбор количества выводов preview 
+        $count = $this->count;
+        if ($_POST['enter'])
+            $count = $_POST['count'];
+        // добавить счетчик страниц, где-то так...
+        $tmp = substr($_SERVER['REQUEST_URI'], 20);
+        if ($tmp > 0)
+            $count += $tmp;
+        // запрос из БД
+        $data = $this->InsertDB ($count, $row, $value, $action);
+        // генерация preview
+        $i = $this->i+1;
+        while ($i <= $count)
+        {
+            $day = $times['day'];
+            $times = $this->TimeConverting($data[$i-1]['time'], $i-1);
+            if ($times['day'] != $day)
+                echo $times['day'];
+            $data = $this->NewsGenerated($i, $data, $times);
+            $i++;
+        }
     }
     
     function ShowNew() // In work...
     {
-	$array = parent::Select('news', $_POST['id']);
+        $this->data = $this->InsertDB ($count, key($_GET), $_GET['id'], '=');
+        switch ($this->data[0]['media'])
+        {
+            case 'image' : $this->data[0]['media'] = 'images/00'.$this->data[0]['id'].'_news.jpg';
+                break;
+            case 'video' : $this->data[0]['media'] = 'video/';
+                break;
+            case 'flash' : $this->data[0]['media'] = 'flash/';
+                break;
+           default : $this->data[0]['media'] = 'images/000_news_def.jpg';
+        }
+        $times = $this->TimeConverting($this->data[0]['time'], 0);
+        $this->data[0]['day'] = $times['day'];
+        $this->data[0]['time'] = $times['time'];
+        if ($this->data[0]['original_autor'] == TRUE)
+            $this->data[0]['original_autor'] = 'autor: '.$this->data[0]['original_autor'];
     }
 }
