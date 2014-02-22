@@ -1,4 +1,5 @@
 <?php
-include 'include.php';  
-$page = new Page ('page', 'News');
-$page->show();
+include 'include.php';
+
+$page = new Page ('news', 'News');
+$page->Show();
