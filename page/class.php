@@ -1,12 +1,12 @@
 <?php
 class Page extends Menu {
     public $type;
-    public $data;
+    //public $data;
     
-    public function __construct($type,$data) {
+    public function __construct($type) {
         parent::__construct();
         $this->type = $type;
-        $this->data = $data;
+        //$this->data = $data;
     }
     function show() {
         include 'template/header.tpl';
