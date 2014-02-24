@@ -6,8 +6,8 @@ class Menu extends DB {
         parent::__construct();
         //$this->Show();
     }
-    function Show()
-    {
+    
+    function Show() {
         $this->data = parent::Select('menu');
     }
 }

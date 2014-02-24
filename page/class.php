@@ -8,7 +8,8 @@ class Page extends Menu {
         $this->type = $type;
         $this->data = $data;
     }
-    function show() {
+    
+    function Show() {
         include 'personal/personal.php';
         include 'template/header.tpl';
         $file = $this->type."/".$this->type.'.php';

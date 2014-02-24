@@ -1,10 +1,9 @@
 <?php
  $login_form = new Personal();
  
+ //$login_form->Show()
  if ($login_form->Chk_hash()) {
-     echo 'Hello, '.$login_form->Chk_hash().'!'
-         .'<br><a href="">Exit</a>';
-     
+    include 'account.tpl';
  } else {
      include 'login_form.tpl';
  }

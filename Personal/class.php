@@ -1,14 +1,24 @@
 <?php
-class Personal extends DB {
+class Personal extends Page {
     //public $data;
     
     public function __construct() {
-        parent::__construct();
+        //parent::__construct();
     }
     
+    function Show() {
+        //if parent: $this->type == Reg_form
+            //include reg_form.tpl
+        //else
+            //if chk_hash
+                //include account.tpl
+            //else
+                //include login_form.tpl
+    }
+            
     function Log_in($login, $pass) {
         do {
-            if (!(isset($login) && isset($password))) break;
+            if (!(isset($login) && isset($pass))) break;
             
             $option = parent::Where('login', $login, '=');
             $option .= parent::Limit(1);
@@ -30,22 +40,21 @@ class Personal extends DB {
             if (parent::Update('user', 'hash', $hash, $option)) {
                 setcookie('hash', $hash);
                 $_SESSION['auth_id'] = $array[0]['id'];
-
-                //header('Location: index.php');
             }
             
             break;
         } while (false);
     }
     
-    function Log_out() {
-        $option = parent::Where('id', $_SESSION['auth_id'], '=');
-        
-        if (parent::Update('user', 'hash', '', $option)) {
-            setcookie('hash');
-            session_unset();
+    function Log_out($flag) {
+        if ($flag) {
+            $option = parent::Where('id', $_SESSION['auth_id'], '=');
 
-            //header('Location: index.php');
+            if (parent::Update('user', 'hash', '', $option)) {
+                setcookie('hash');
+                session_unset();
+                $flag = false;
+            }
         }
     }
     
@@ -96,9 +105,11 @@ class Personal extends DB {
     function Chk_hash() {
         $answer = '';
         
-        $option = parent::Where('hash', $_COOKIE['hash'], '=');
-        $option .= parent::Limit(1);
-        $array = parent::Select('user', 'login', $option);
+        if ($_COOKIE['hash']) {
+            $option = parent::Where('hash', $_COOKIE['hash'], '=');
+            $option .= parent::Limit(1);
+            $array = parent::Select('user', 'login', $option);
+        }
 
         if (count($array)) {
            $answer = $array[0]['login'];

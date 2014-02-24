@@ -1,5 +1,5 @@
 <?php
-    $login_form->Log_in($_POST['login'], $_POST['password']);
+ $login_form->Log_in($_POST['login'], $_POST['password']);
 ?>
 <form action="" method="post">
     <input type="text" name="login" placeholder="Login"><br>
