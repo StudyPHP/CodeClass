@@ -2,7 +2,7 @@
     if ($this->type == 'news') { ?>
         <div>
             <h3>
-                <a href="news.php?id=<?php echo $v['id'] ?>">id</a>
+                <a href="index.php?page=news&id=<?php echo $v['id'] ?>">id</a>
                 <?php echo $v['title'] ?>
             </h3>
             <p><?php echo $v['excerpt'] ?></p>

@@ -47,6 +47,8 @@ class DB {
            $sql = substr($sql, 0, strlen($sql)-1);
        }
        
+       if ($option) $sql .= $option;
+       
        $answer = mysql_query($sql);       
        return $answer;
     }
