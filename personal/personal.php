@@ -2,11 +2,11 @@
 include 'class.php';
 $personal = new Personal();
 
-if (!$_GET['registration'])
+switch ($_GET['module'])
 {
-    include 'form_login.tpl';
-}
-if ($_GET['registration'] == 1)
-{
-    include 'form_reg.tpl';
+    case 'reg': include 'form_reg.tpl';
+    break;
+    case 'logout': include 'form_logout.tpl';
+    break;
+    default : include 'form_login.tpl';
 }

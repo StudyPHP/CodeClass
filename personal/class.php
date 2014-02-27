@@ -32,16 +32,6 @@ class Personal extends DB
     }
     
     function ShowForm ()    // OK: function work correct.
-    /*
-    Need to create a table "registration_form" in MySQL for the generate of the registration form
-    Field:
-	    name
-	    type
-	    placeholder
-	    required
-	    pattern
-	    coment
-     */
     {
         $array = parent::Select('registration_form');
     	for ($i=0;$i<count($array);$i++)
@@ -101,9 +91,17 @@ class Personal extends DB
                     $rem_last_var = array_pop($_POST);     
                     $rem_second_last_var = array_pop($_POST); 
                     $row = array_keys($_POST);
-                    $data = parent::Insert('user', $row, $_POST);   // Not work...
+                    for ($i=0;$i<count($row);$i++)
+                    {
+                        $row[$i] = '`'.$row[$i].'`';
+                    }
+                    foreach ($_POST as $kay => $val)
+                    {
+                        $value[$kay] = '`'.$_POST[$kay].'`';
+                    }
+                    $data = parent::Insert('`user`', $row, $value);   // Not work...
                     //session_start();
-                    header ('Location: ../index.php'); 
+                    //header ('Location: ../index.php'); 
                     die;
                 }
             }

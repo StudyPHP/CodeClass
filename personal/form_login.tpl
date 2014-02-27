@@ -8,4 +8,4 @@ $personal->UserLogin($_POST);
     <input type="reset" value="Clean"> 
 </form>
 New to this site? 
-<a href="personal.php?registration=1">Sign up!</a>
+<a href="../?page=personal&module=reg">Sign up!</a>

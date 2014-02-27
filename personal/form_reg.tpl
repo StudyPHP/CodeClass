@@ -1,5 +1,5 @@
 <?php
-$personal->UserRegistere(); //в работе
+$personal->UserRegistere();
 ?>
 <form method="POST" action="">
     Registration Form:<br>
@@ -11,4 +11,4 @@ $personal->ShowForm();
     <input type="reset" value="Clean"> 
 </form>
 Already a member?
-<a href="personal.php">Please LogIn!</a>
+<a href="../?page=personal">Please LogIn!</a>
