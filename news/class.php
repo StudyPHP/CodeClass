@@ -71,7 +71,7 @@ class News extends DB
         $i = $i-1;
         echo '<hr><div id="p_view">';
         echo $times['time'].'<br> Category: '.$data[$i]['category'];      
-        $url = "news.php?id={$data[$i]['id']}";
+        $url = "index.php?page=news&module={$data[$i]['id']}";
         echo '<div class="p_img"> 
                 <a href="'.$url.'">';
         switch ($data[$i]['media'])
@@ -96,7 +96,7 @@ class News extends DB
             $preview = wordwrap($preview, 200, '|'); //делим строку символом "|" в позиции 200± по концу слова
             $position = strpos($preview, '|'); //возвращаем длину строки до "|"
             $preview = substr($preview, 0, $position); //обрезаем строку до "|"
-            $preview .= '<a href="new.php?page='.$data[$i]['id'].'">... done.</a>';
+            $preview .= '<a href="index.php?page=news&module='.$data[$i]['id'].'">... done.</a>';
             echo "<p>".$preview;
         }
         echo '</div>';
@@ -128,9 +128,9 @@ class News extends DB
         }
     }
     
-    function ShowNew() // In work...
+    function ShowNew() // блок новости
     {
-        $this->data = $this->InsertDB ($count, key($_GET), $_GET['id'], '=');
+        $this->data = $this->InsertDB ($count, 'id', $_GET['module'], '=');
         switch ($this->data[0]['media'])
         {
             case 'image' : $this->data[0]['media'] = 'images/00'.$this->data[0]['id'].'_news.jpg';

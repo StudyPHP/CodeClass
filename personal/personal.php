@@ -8,5 +8,7 @@ switch ($_GET['module'])
     break;
     case 'logout': include 'form_logout.tpl';
     break;
+    case 'person': include 'personal.tpl';
+    break;
     default : include 'form_login.tpl';
 }

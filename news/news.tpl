@@ -1,9 +1,9 @@
 <form method="POST" action="">
     Show: 
     <select name="count">
-        <option  value="3" selected>3</option>
-        <option  value="5">5</option>
-        <option  value="10">10</option>
+        <option value="3" selected>3</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
     </select>
     <input type="submit" name="enter" value="preview">
 </form>

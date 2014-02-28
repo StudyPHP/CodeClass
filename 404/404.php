@@ -1,2 +1,2 @@
 <?php
-echo "404 pege NOt ";
+echo "<h3>404 page not found...</h3>";

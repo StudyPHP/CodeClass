@@ -10,7 +10,7 @@
     <p><?=$news->data[0]['original_autor']?></p>
     <p>url original: 
         <a href="<?=$news->data[0]['original_url']?>">
-            <img src="images/logo/<?=$news->data[0]['original_logo']?>.png" title="<?=$news->data[0]['original_resurse']?>">
+            <img src="news/logo/<?=$news->data[0]['original_logo']?>.png" title="<?=$news->data[0]['original_resurse']?>">
         </a>
     </p>
     <a href=""><?=$news->data[0]['tags']?></a>

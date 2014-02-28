@@ -9,3 +9,5 @@ $personal->UserLogin($_POST);
 </form>
 New to this site? 
 <a href="../?page=personal&module=reg">Sign up!</a>
+Want to quit?
+<a href="../?page=personal&module=logout">Log Out</a>

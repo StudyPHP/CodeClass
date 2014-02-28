@@ -12,3 +12,5 @@ $personal->ShowForm();
 </form>
 Already a member?
 <a href="../?page=personal">Please LogIn!</a>
+Want to quit?
+<a href="../?page=personal&module=logout">Log Out</a>
