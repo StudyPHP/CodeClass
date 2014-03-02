@@ -11,3 +11,6 @@ if($_GET)
 else{
   $page='page';  
 }
+
+$personal = new Personal();
+$personal->Log_in($_POST['login'], $_POST['pass']);

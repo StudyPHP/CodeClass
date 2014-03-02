@@ -22,6 +22,7 @@ class DB {
       while($row = mysql_fetch_assoc($data)){
          $array[]= $row;
       }
+      
       return $array;
     }
     
@@ -74,7 +75,7 @@ class DB {
         $option = '';
         
         if(is_int($count))
-            $option = "LIMIT $position, $count";
+            $option = " LIMIT $position, $count";
         return $option;
     }
 }
