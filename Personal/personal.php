@@ -1,9 +1,9 @@
 <?php
- $login_form = new Personal();
- 
- //$login_form->Show()
- if ($login_form->Chk_hash()) {
-    include 'account.tpl';
- } else {
-     include 'login_form.tpl';
- }
+if (!$_GET['registration'])
+{
+    include 'form_login.tpl';
+}
+if ($_GET['registration'] == 1)
+{
+    include 'form_reg.tpl';
+}
