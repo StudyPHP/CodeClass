@@ -1,4 +1,4 @@
-@import "../menu/menu.css";
-@import "../page/page.css";
-@import "../personal/personal.css";
-@import "../news/news.css";
+@import "/menu/menu.css";
+@import "/page/page.css";
+@import "/personal/personal.css";
+@import "/news/news.css";

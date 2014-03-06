@@ -1,10 +1,25 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 09.02.2014, 12:58:55
-    Author     : МОУО
-*/
+/* Link block */
+nav a { 
+    text-decoration: none; /* Отменяем подчеркивание у ссылки */
+    color: #9370DB; /* Цвет ссылок */
+}
+nav a:visited {
+    color: #CFCFCF; /* Цвет посещенных ссылок */
+}
+nav a:active {
+    color: #ffff00; /* Цвет активных ссылок */
+}
+nav a:hover {
+    color: #000; /* Цвет ссылок при наведении */
+}
+/* End link block */
 
+/* Format menu */
+nav div, nav div li {
+    margin: 10px 10px 10px 0px;
+}
+li {
+    list-style-type: none;
+    display: inline;
+}
+/* End format menu */

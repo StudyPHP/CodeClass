@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link type="text/css" rel="stylesheet" href="css/style.css">
+        <link type="text/css" rel="stylesheet" href="template/css/style.css">
         <title>
            <?php if (!empty($this->array['title'])) 
                     $this->array['title'];

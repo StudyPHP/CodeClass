@@ -103,7 +103,7 @@ class News extends DB
         return $data;
     }
     
-    function ShowNews($_POST) //генерация $count блоков preview 
+    function ShowNews() //генерация $count блоков preview 
     {
         // выбор количества выводов preview 
         $count = $this->count;
