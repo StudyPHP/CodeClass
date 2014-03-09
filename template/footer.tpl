@@ -1,6 +1,6 @@
-<footer>
-    <?php include 'menu/menu.php'; ?>
-</footer>
-</body>
+        <footer>
+            <?php include 'menu/menu.php'; ?>
+        </footer>
+    </body>
 </html>
 

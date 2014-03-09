@@ -18,6 +18,7 @@ Field:
 
 class News extends DB 
 {
+    public $array;
     protected $count = 3;
     protected $i = 0;
     public function __construct() 

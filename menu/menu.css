@@ -18,7 +18,7 @@ nav a:hover {
 nav div, nav div li {
     margin: 10px 10px 10px 0px;
 }
-li {
+nav div li {
     list-style-type: none;
     display: inline;
 }

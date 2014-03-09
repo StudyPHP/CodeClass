@@ -1,9 +1,21 @@
-#p_view
-{
-    
+/* Style for News */
+#p_view {
+    margin: 20px 0px;
 }
 
-.p_img
-{
-    
+.p_img a img {
+    width: 10%;
+    height: 10%;    
 }
+
+news p {
+    display: inline;
+}
+/* End: style for News*/
+
+/* Style for New */
+p a img {
+    width: 5%;
+    height: 5%;    
+}
+/* End: style for New*/
